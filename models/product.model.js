@@ -12,7 +12,7 @@ const productSchema = new Scheam(
     productImage: { type: String, default: "profile.png" },  
     userId: {type:Scheam.Types.ObjectId,ref:'user'},
     isPublic: { type: Boolean },
-    productType:{ type:String, enum:['cream','lotion'] },
+    productType:{ type:String, enum:['Tropical','Oral','Others'] },
     read: { type: Boolean ,default:false},
   },
   {

@@ -15,7 +15,9 @@ const sendEmailToUser = async (req, res) => {
         subject: "reset password",
       },
     };
-    await sendEmail(data);
+    console.log('this is data for mail',data)
+   const mailresponse=sendEmail(data);
+   
     const condition=[
       {
         $match:{
