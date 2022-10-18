@@ -9,6 +9,7 @@ const createproduct=async(req,res)=>{
             companyName:req.body.companyName,
             productForm:req.body.productForm,
             productImage:req.body.productImage,
+            productType:req.body.productType,
             userId:req.decoded._id,
             isPublic:true
         }
@@ -17,6 +18,7 @@ const createproduct=async(req,res)=>{
             companyName:req.body.companyName,
             productForm:req.body.productForm,
             productImage:req.body.productImage,
+            productType:req.body.productType,
             userId:req.decoded._id,
             isPublic:false
         }
