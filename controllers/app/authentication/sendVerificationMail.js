@@ -12,11 +12,11 @@ const sendEmailToUser = async (req, res) => {
       receiver: req.body.email,
       templateData: {
         link,
-        subject: "reset password",
+        subject: "OTP for reset password",
       },
     };
-    console.log('this is data for mail',data)
-   const mailresponse=sendEmail(data);
+  
+   sendEmail(data);
    
     const condition=[
       {
