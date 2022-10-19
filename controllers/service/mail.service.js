@@ -12,7 +12,7 @@ function  sendEmail(data) {
     from: "kumarijannat98765@gmail.com",
     subject: "reset password",
     templateId: "d-64a421f638f84747b7451af65dc183c7",
-    dynamic_template_data: data.templateData.link,
+    dynamic_template_data:{ link:data.templateData.link}
     
   };
 
