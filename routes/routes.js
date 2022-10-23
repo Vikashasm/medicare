@@ -23,6 +23,7 @@ appRouter.post("/login", appController.app.authentication.login);
 appRouter.post("/upload", multer({ storage:storage }).single("file"), appController.app.file.upload);
 
 appRouter.post("/send/verification-mail",appController.app.authentication.sendVerificationMail);
+appRouter.post("/phone/detail",appController.app.authentication.userByPhone);
 // appRouter.post("/verify/otp",appController.app.authentication.verifyOtp);
 
 
