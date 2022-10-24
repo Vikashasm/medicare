@@ -1,23 +1,19 @@
 const routineService=require('../../service/routine.service')
 const mongoose=require('mongoose')
 
-const createroutine=async(req,res)=>{
+const updateRoutine=async(req,res)=>{
     try {
-        const data={
-            ...req.body,
-            userId:mongoose.Types.ObjectId(req.decoded._id)
-        }
-        const routine=await routineService.createRoutine(data)
+        const routine=await routineService.editRoutine({_id:mongoose.Types.ObjectId(req.params.routineLogId)},req.body)
         if(routine){
             return res.status(201).json({
                 success:true,
-                message:'routine added successfully',
+                message:'routine updated successfully',
                 routine:routine
             })
         }else{
             return res.status(400).json({
                 success:false,
-                message:"failed to create routine"
+                message:"failed to update routine"
             })
         }
     } catch (error) {
@@ -26,4 +22,4 @@ const createroutine=async(req,res)=>{
     }
 }
 
-module.exports=[createroutine]
+module.exports=[updateRoutine]

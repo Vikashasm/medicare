@@ -1,23 +1,23 @@
-const routineService=require('../../service/routine.service')
+const scheduleService=require('../../service/schedule.service')
 const mongoose=require('mongoose')
 
-const createroutine=async(req,res)=>{
+const addSchedule=async(req,res)=>{
     try {
         const data={
             ...req.body,
             userId:mongoose.Types.ObjectId(req.decoded._id)
         }
-        const routine=await routineService.createRoutine(data)
-        if(routine){
+        const schedule=await scheduleService.createSchedule(data)
+        if(schedule){
             return res.status(201).json({
                 success:true,
-                message:'routine added successfully',
-                routine:routine
+                message:'schedule added successfully',
+                schedule:schedule
             })
         }else{
             return res.status(400).json({
                 success:false,
-                message:"failed to create routine"
+                message:"failed to create schedule"
             })
         }
     } catch (error) {
@@ -26,4 +26,4 @@ const createroutine=async(req,res)=>{
     }
 }
 
-module.exports=[createroutine]
+module.exports=[addSchedule]

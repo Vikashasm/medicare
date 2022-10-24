@@ -1,23 +1,19 @@
 const routineService=require('../../service/routine.service')
 const mongoose=require('mongoose')
 
-const createroutine=async(req,res)=>{
+const deleteRoutineLog=async(req,res)=>{
     try {
-        const data={
-            ...req.body,
-            userId:mongoose.Types.ObjectId(req.decoded._id)
-        }
-        const routine=await routineService.createRoutine(data)
-        if(routine){
+        const routine=await routineService.deleteRoutine({_id:mongoose.Types.ObjectId(req.params.routineLogId)})
+        if(routine.deletedCount===1){
             return res.status(201).json({
                 success:true,
-                message:'routine added successfully',
+                message:'routine deleted successfully',
                 routine:routine
             })
         }else{
             return res.status(400).json({
                 success:false,
-                message:"failed to create routine"
+                message:"failed to delete routine"
             })
         }
     } catch (error) {
@@ -26,4 +22,4 @@ const createroutine=async(req,res)=>{
     }
 }
 
-module.exports=[createroutine]
+module.exports=[deleteRoutineLog]

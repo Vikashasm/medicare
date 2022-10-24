@@ -42,5 +42,14 @@ appRouter.get("/product", appController.app.product.list);
 
 //routine api
 appRouter.post("/routine/log", appController.app.routine.create);
+appRouter.get("/routine/list/:day", appController.app.routine.list);
+appRouter.put("/routine/edit/:routineLogId", appController.app.routine.update);
+appRouter.delete("/routine/delete/:routineLogId", appController.app.routine.delete);
+
+//schedule api
+appRouter.post("/add/schedule", appController.app.schedule.create);
+appRouter.get("/list/schedule", appController.app.schedule.list);
+appRouter.put("/edit/schedule/:scheduleId", appController.app.schedule.edit);
+appRouter.delete("/delete/schedule/:scheduleId", appController.app.schedule.delete);
 
 module.exports = appRouter;

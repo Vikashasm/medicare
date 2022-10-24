@@ -1,38 +1,39 @@
+const scheduleModel=require('../../models/schedule.model')
 var createError = require("http-errors");
 const httpStatus = require("http-status-codes").StatusCodes;
-const routineModel = require("../../models/routuneLog.model");
+
 module.exports = {
-  async findRoutine(data) {
+  async findSchedule(data) {
     try {
-      const routine = await routineModel.aggregate(data);
-      return routine;
+      const schedule = await scheduleModel.aggregate(data);
+      return schedule;
     } catch (error) {
       createError(500, error);
     }
   },
 
-  createRoutine: async (product) => {
+  createSchedule: async (product) => {
     try {
-      const routineList = await routineModel.create(product);
-      return routineList;
+      const scheduleList = await scheduleModel.create(product);
+      return scheduleList;
     } catch (error) {
       console.log(error);
       createError(httpStatus.INTERNAL_SERVER_ERROR, error);
     }
   },
 
-  editRoutine: async (conditions, dataToUpdate) => {
+  editSchedule: async (conditions, dataToUpdate) => {
     try {
-      const updateResult = await routineModel.findByIdAndUpdate(conditions, dataToUpdate,{new:true});
+      const updateResult = await scheduleModel.findByIdAndUpdate(conditions, dataToUpdate,{new:true});
       return updateResult
     } catch (error) {
       createError(httpStatus.INTERNAL_SERVER_ERROR, error);
     }
   },
 
-  deleteRoutine: async (id) => {
+  deleteSchedule: async (id) => {
     try {
-      const deletedResult = await routineModel.deleteOne(id);
+      const deletedResult = await scheduleModel.deleteOne(id);
       return deletedResult
     } catch (error) {
       createError(httpStatus.INTERNAL_SERVER_ERROR, error);
