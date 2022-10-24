@@ -9,15 +9,15 @@ const authService = require("../../service/user.service");
 let UserDetail = async (req, res, next) => {
   try {
     if (req.params.userId==="me") {
-      
       const condition=[
         {
         $match:{
-          _id: mongoose.Types.ObjectId(req.params.userId)
+          _id: mongoose.Types.ObjectId(req.decoded._id)
         }
       }
     ]
       let user = await authService.findUser(condition);
+      console.log(user)
       if (user.length > 0) {
         user[0].profileImagePath =await authService.userImage(user[0].profileImage);
         delete user[0].password;
