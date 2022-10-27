@@ -11,5 +11,8 @@ module.exports = {
   fileUrl: "http://localhost:3000",
   imagePath: path.join(__dirname,'../uploads/'),
   tokenDuration: "30d",
-  sgMail:process.env.sgMail
+  sgMail:process.env.sgMail,
+  ID:'AKIA5HXAFU4WD6QMYYP7',
+  KEY:'hvOkzrBRVpWnuRCOoOE0OcKCgcLSR5yOHOeiPq3x',
+  bucket:'medicare-app'
 }

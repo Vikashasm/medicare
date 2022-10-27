@@ -12,7 +12,7 @@ module.exports = {
   imagePath: path.join(__dirname,'../uploads/'),
   tokenDuration: "30d",
   sgMail:process.env.sgMail,
-  ID:'AKIA5HXAFU4WD6QMYYP7',
-  KEY:'hvOkzrBRVpWnuRCOoOE0OcKCgcLSR5yOHOeiPq3x',
+  ID:'AKIA5HXAFU4WLRQPW2BO',
+  KEY:'7MFtXiLV3V2nGZskZzjBPg05reL3DulzfDtn/Kmu',
   bucket:'medicare-app'
 };
