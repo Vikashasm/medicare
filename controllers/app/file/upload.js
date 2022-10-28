@@ -2,10 +2,8 @@
 const Path = require("path");
 const imageMiddleware = require("../../../middleware/image.middleware");
 
-
   const uploadFileForPublicStory = async (req, res, next) => {
     try {
-      console.log(req.file)
         if (req.file) {
             if (req.file !== "" && imageMiddleware.isImage(req.file.originalname)) {
               const data = await imageMiddleware.uploadS3(req.file.originalname, req.query.folder );

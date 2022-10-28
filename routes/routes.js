@@ -52,4 +52,7 @@ appRouter.get("/list/schedule", appController.app.schedule.list);
 appRouter.put("/edit/schedule/:scheduleId", appController.app.schedule.edit);
 appRouter.delete("/delete/schedule/:scheduleId", appController.app.schedule.delete);
 
+//routine graph api
+appRouter.get("/routine/graph", appController.app.graph.graph);
+
 module.exports = appRouter;
