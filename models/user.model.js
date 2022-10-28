@@ -15,7 +15,7 @@ const userSchema = new Scheam(
     dateOfBirth: { type: String, required: true },
     skinCondition:  {type:String,
       enum:['eczema','psoriasis','acne','rosacea','ichthyosis','vitiligo']},
-    gender: { enum:['male','female','transgender'] },
+    gender: { type:String,enum:['male','female','other'] },
     country: { type: String, required: true},
     email: { type: String, required: true, unique: true },
     profileImage: { type: String, default: "profile.png" },
