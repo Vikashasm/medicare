@@ -27,7 +27,7 @@ const findUserEmail = async (req, res, next) => {
     }
   } catch (err) {
     console.log(err);
-    createError(httpStatus.INTERNAL_SERVER_ERROR, error);
+    createError(httpStatus.INTERNAL_SERVER_ERROR, err);
   }
 };
 

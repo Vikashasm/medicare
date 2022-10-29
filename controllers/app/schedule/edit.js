@@ -1,5 +1,26 @@
 const scheduleService=require('../../service/schedule.service')
+const scheduleModule=require('../../../models/schedule.model')
 const mongoose=require('mongoose')
+
+const updateScheduleData=async(req,res,next)=>{
+    try {
+        if(req.body.medicineTaken){
+            const schedule=await scheduleModule.updateOne({_id:mongoose.Types.ObjectId(req.params.scheduleId),
+                "SelectedDays._id":mongoose.Types.ObjectId(req.body.medicineTakenId)}, {
+                $set:{
+                  "SelectedDays.$.medicineTaken":req.body.medicineTaken,
+                }
+            })
+            next()
+        }
+        else{
+            next()
+        }
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
 
 const updateSchedule=async(req,res)=>{
     try {
@@ -22,4 +43,4 @@ const updateSchedule=async(req,res)=>{
     }
 }
 
-module.exports=[updateSchedule]
+module.exports=[updateScheduleData,updateSchedule]
