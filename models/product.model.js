@@ -8,7 +8,7 @@ const productSchema = new Scheam(
     id: { type: Number },
     productName: { type: String, required: true },
     companyName: { type: String, required: true },
-    productForm: { type:String, enum:['capsule','tablet','powder'] },
+    productForm: { type:String, enum:['Capsule','Tablet','Powder','Moisturizer','Treatment','Oil','shampoo','Conditioner','Soap','facewash','Cleanser'] },
     productImage: { type: String, default: "profile.png" },  
     userId: {type:Scheam.Types.ObjectId,ref:'user'},
     isPublic: { type: Boolean },
@@ -22,3 +22,4 @@ const productSchema = new Scheam(
 
 productSchema.plugin(AutoIncrement, { inc_field: "id", id: "productId" });
 module.exports = mongoose.model("product", productSchema);
+
