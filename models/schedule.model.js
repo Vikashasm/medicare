@@ -7,12 +7,18 @@ const scheduleSchema = new Scheam(
     id: { type: Number },
     productId: {type:Scheam.Types.ObjectId,ref:'product'},
     userId: {type:Scheam.Types.ObjectId,ref:'user'},
-    schedule: { type: String,enum:['morning','afternoon','night','both','everyday','selectedDays'] },
+    type: {type:String, enum:['Tropical','Oral','Others']},
+    schedule: { type: String,enum:['morning','night','evening','both','thrice'] },
     SelectedDays : [
       {
       day:{type:String},
       selected: {type:Boolean,default:true},
-      medicineTaken: {type:Boolean,default:false}
+      medicineTaken: [
+        {
+          time:{type:String},
+          active:{type:Boolean,default:false}
+        }
+      ]
       }
     ]
   },

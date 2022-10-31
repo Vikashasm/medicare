@@ -4,11 +4,46 @@ const mongoose=require('mongoose')
 
 const updateScheduleData=async(req,res,next)=>{
     try {
-        if(req.body.medicineTaken){
-            const schedule=await scheduleModule.updateOne({_id:mongoose.Types.ObjectId(req.params.scheduleId),
-                "SelectedDays._id":mongoose.Types.ObjectId(req.body.medicineTakenId)}, {
+        if(req.body.active){
+            const schedule=await scheduleModule.updateOne({
+                _id:mongoose.Types.ObjectId(req.params.scheduleId),
+                "SelectedDays":{
+                    '$elemMatch':{
+                        "_id":mongoose.Types.ObjectId(req.body.selectedDaysId),
+                        "medicineTaken._id":mongoose.Types.ObjectId(req.body.medicineTakenId)
+                    }
+                }
+            }, {
                 $set:{
-                  "SelectedDays.$.medicineTaken":req.body.medicineTaken,
+                    "SelectedDays.$[outer].medicineTaken.$[inner].active":req.body.active,
+                }
+            },
+            {
+                arrayFilters: [
+                  { "outer._id":mongoose.Types.ObjectId(req.body.selectedDaysId)},
+                  {"inner._id": mongoose.Types.ObjectId(req.body.medicineTakenId)}
+        
+              ]
+            }
+            )
+            next()
+        }
+        else{
+            next()
+        }
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
+const updateSelected=async(req,res,next)=>{
+    try {
+        if(req.body.selected){
+            const schedule=await scheduleModule.updateOne({_id:mongoose.Types.ObjectId(req.params.scheduleId),
+                "SelectedDays._id":mongoose.Types.ObjectId(req.body.selectedDaysId)}, {
+                $set:{
+                  "SelectedDays.$.selected":req.body.selected,
                 }
             })
             next()
@@ -24,6 +59,10 @@ const updateScheduleData=async(req,res,next)=>{
 
 const updateSchedule=async(req,res)=>{
     try {
+        delete req.body.selectedDaysId
+        delete req.body.medicineTakenId
+        delete req.body.active
+        delete req.body.selected
         const schedule=await scheduleService.editSchedule({_id:mongoose.Types.ObjectId(req.params.scheduleId)},req.body)
         if(schedule){
             return res.status(201).json({
@@ -43,4 +82,4 @@ const updateSchedule=async(req,res)=>{
     }
 }
 
-module.exports=[updateScheduleData,updateSchedule]
+module.exports=[updateScheduleData,updateSelected,updateSchedule]
