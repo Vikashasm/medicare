@@ -55,4 +55,7 @@ appRouter.delete("/delete/schedule/:scheduleId", appController.app.schedule.dele
 //routine graph api
 appRouter.get("/routine/graph", appController.app.graph.graph);
 
+//video apis
+appRouter.get("/videos", appController.app.video.list);
+
 module.exports = appRouter;

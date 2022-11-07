@@ -26,4 +26,7 @@ adminRouter.put("/admin/read/product/:productId",adminController.admin.product.r
 adminRouter.get("/admin/contacts",adminController.admin.contact.list);
 adminRouter.put("/admin/contact/action/:contactId",adminController.admin.contact.actionTaken);
 
+//video apis
+adminRouter.post("/admin/add/video",adminController.admin.video.add);
+
 module.exports= adminRouter

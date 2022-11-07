@@ -10,8 +10,8 @@ const p = Path.join(`${__dirname}../../uploads`);
 module.exports = {
   getS3() {
     AWS.config.update({
-      accessKeyId: `${process.env.ID}`,
-      secretAccessKey: `${process.env.KEY}`,
+      accessKeyId: `${cred.ID}`,
+      secretAccessKey: `${cred.KEY}`,
       region: "ap-southeast-2",
     });
     return new AWS.S3();

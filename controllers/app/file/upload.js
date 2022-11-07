@@ -15,7 +15,7 @@ const imageMiddleware = require("../../../middleware/image.middleware");
               });
             }else if(req.file !== "" && imageMiddleware.isVideo(req.file.originalname)){
               const file = await imageMiddleware.uploadS3(req.file.originalname, req.query.folder );
-              const thumbnail = await imageMiddleware.uploadS3(`${req.file.originalname.split(".")[0]}_1.png`, "thumbnail");
+              // const thumbnail = await imageMiddleware.uploadS3(`${req.file.originalname.split(".")[0]}_1.png`, "thumbnail");
               return res.status(200).json({
                 success: true,
                 message: "file uploaded successfully.",
